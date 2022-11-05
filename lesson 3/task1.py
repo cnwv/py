@@ -1,0 +1,1 @@
+def fun_del():
