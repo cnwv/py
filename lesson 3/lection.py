@@ -24,7 +24,7 @@
 # """
 p = input("Enter nubmers - ")
 try:
-    n = int(p)
+    p = int(p)
     print(p)
 except ValueError:
     print("Only numbers")
