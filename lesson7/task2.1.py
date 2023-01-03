@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class Absclass(ABC):
+class AbsClass(ABC):
     def __init__(self, param=55):
         self.param = param
 
@@ -10,16 +10,7 @@ class Absclass(ABC):
         pass
 
 
-class Clothes(Absclass):
-
-    @property
-    def consumption_coat(self):
-        pass
-
-    @property
-    def consumption_suit(self):
-        pass
-
+class Clothes(AbsClass):
     @property
     def consumption(self):
         return f'Общий расход ткани = {self.consumption_coat + self.consumption_suit}'
@@ -28,17 +19,15 @@ class Clothes(Absclass):
 class Coat(Clothes):
     @property
     def consumption(self):
-        result = round(self.param / 6.5 + 0.5)
-        Clothes.consumption_coat = result
-        return f'Расход ткани на пальто {self.param} размера - {round(self.param / 6.5 + 0.5)}'
+        Clothes.consumption_coat = round(self.param / 6.5 + 0.5)
+
+        return
 
 
 class Suit(Clothes):
     @property
     def consumption(self):
-        result = round(2 * self.param + 0.3)
-        Clothes.consumption_suit = result
-        return f'Расход ткани на костюм {self.param} размера- {2 * self.param + 0.3}'
+        return round(2 * self.param + 0.3)
 
 
 prada = Clothes()

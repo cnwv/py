@@ -30,8 +30,8 @@ class Cell:
 
 k1 = Cell(15)
 k2 = Cell(7)
-s_12 = k1 / k2
-print(s_12)
+s_12 = k1 + k2
+print(s_12.make_order(4))
 # print(k1.make_order(3))
 print(s_12.make_order(2))
 
