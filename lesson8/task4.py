@@ -1,70 +1,60 @@
-
 class Printer:
-    def __init__(self):
-        self.printer_1 = 'HP HP LaserJet 400'
-        self.printer_2 = 'CANON I-SENSYS LBP6030B PANTUM P2500W'
-        self.printer_3 = 'EPSON L132'
-        self.printerdict = {}
-
-    @property
-    def printer(self):
-        self.printerdict.setdefault(self.printer_1)
-        self.printerdict.setdefault(self.printer_2)
-        self.printerdict.setdefault(self.printer_3)
-        return self.printerdict
-
-
-class Scanner:
-    def __init__(self, scannerdict):
-        self.scannerdict = scannerdict
-        self.scanner_1 = 'HP ScanJet Pro 2000 s2'
-        self.scanner_2 = 'Canon imageFORMULA DR-C225 II'
-        self.scanner_3 = 'Mustek A3 F2400N'
-        self.scannerdict = {}
-
-    @property
-    def scanner(self):
-        self.scannerdict.setdefault(self.scanner_1)
-        self.scannerdict.setdefault(self.scanner_2)
-        self.scannerdict.setdefault(self.scanner_3)
-        return self.scannerdict
+    def __init__(self, model, amount, name):
+        self.model = model
+        self.amount = amount
+        self.name = name
 
 
 class Xerox:
-    def __init__(self, xeroxdict):
-        self.xerox_1 = 'Xerox WorkCentre 3025BI'
-        self.xerox_2 = 'Xerox B1032'
-        self.xerox_3 = 'Xerox SS14'
-        self.xeroxdict = xeroxdict
+    def __init__(self, model, amount, name):
+        self.model = model
+        self.amount = amount
+        self.name = name
 
 
-    @property
-    def xerox(self):
-        self.xeroxdict.setdefault(self.xerox_1)
-        self.xeroxdict.setdefault(self.xerox_2)
-        self.xeroxdict.setdefault(self.xerox_3)
-        return self.xeroxdict
+class Scanner:
+    def __init__(self, model, amount, name):
+        self.model = model
+        self.amount = amount
+        self.name = name
 
 
-class WareHouse(Printer, Scanner, Xerox):
-    def __init__(self):
-        super().__init__(xeroxdict)
+class WareHouse:
+    def inventory(self):
+        for x, i in enumerate(models):
+            print(f"<{x}> {i.name} {i.model} - {i.amount} шт.")
 
-    def __str__(self):
-        print(f"Cклад {self.name}")
+    def add_goods(self, key, value):  # Получаем товар на склад
+        models[key].amount += value
+
+    def issue_goods(self, key, value): # Выдаем товар со склада
+        models[key].amount -= value
 
 
-
-moscow = WareHouse(Xerox(1))
-moscow.xerox
-
+models = [
+    Printer('HP ScanJet Pro 200', 2, 'Принтер'),
+    Scanner('HP LaserJet 400', 20, 'Сканер'),
+    Xerox('Xerox WorkCentre 3025BI', 100, 'Ксерокс'),
+    Xerox('Xerox WРВ 110', 0, 'Ксерокс'),
+    Printer('HP MSk 123', 2, 'Принтер')
+]
+warehouse = WareHouse()
 # Menu
+
 while True:
-    print('Введите тип операции:\n  <1> Принять на склад\n  <2> Выдать со склада\n <3> Посмотреть наличие')
-    action = input('>')
-    if action == 3:
-        print('Выберите товар: \n <1> Принтеры \n <2> Сканеры \n <3> Ксероксы')
-        product = input('>')
-        if product == 3:
-            for i in moscow.xerox:
-                print(i)
+    print(f'Выберете действие: \n<1> Получение товара\n<2> Отгрузка товара')
+    action = input('> ')
+    if action in ['1', '2']:
+        print('Выберите продукт:')
+        warehouse.inventory()
+    product = int(input('>'))
+    print('Выбери количество - ')
+    try:
+        add_rem = int(input('кол-во > '))
+    except ValueError:
+        print('Неверный тип данных')
+
+    if action == '1':
+        warehouse.add_goods(product, add_rem)
+    elif action == '2':
+        warehouse.issue_goods(product, add_rem)
