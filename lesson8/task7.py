@@ -5,10 +5,9 @@ class ComplexNum:
         self.b = b
 
     def __add__(self, other):
-        syntax = ''
         if self.b + other.b >= 0:  # если b отрицательное
             syntax = '+'
-        elif self.b + other.b < 0:
+        else:
             syntax = '-'
         return f'{self.a + other.a}{syntax}{abs(self.b + other.b)}i'
 
@@ -25,3 +24,4 @@ z1 = ComplexNum(10, -5255)
 z2 = ComplexNum(-15, -10)
 z = z1 * z2
 print(z)
+print(z1+z2)

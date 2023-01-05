@@ -1,3 +1,8 @@
+class OwnError(Exception):
+    def __init__(self, txt):
+        self.txt = txt
+
+
 class Div:
     def __init__(self, a, b):
         self.a = a
@@ -5,9 +10,12 @@ class Div:
 
     def division(self):
         try:
-            return (self.a / self.b)
-        except ZeroDivisionError:
-            return f"Can't divide by null"
+            if self.b == 0:
+                raise OwnError('хуйня')
+            else:
+                return self.a / self.b
+        except OwnError as err:
+            print(err)
 
 
 div = Div(11, 2)

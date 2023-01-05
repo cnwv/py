@@ -1,3 +1,4 @@
+# TODO: переработать: сделать класс-исключение, переработать stop, переработать блок else
 class MyList:
     def __init__(self, *args):
         self.my_list = []
@@ -14,7 +15,7 @@ class MyList:
                 if stop_word == 'stop':
                     return f"Выход из программы"
                 else:
-                    print(start_task.add_list())
+                    print(start_task.add_list())  # грубая ошибка
 
 
 start_task = MyList(1)

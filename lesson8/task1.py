@@ -3,7 +3,7 @@ class Date:
         self.date = date
 
     @classmethod
-    def tranformation(cls, date):
+    def transformation(cls, date):
         res = []
         for i in date.split("-"):
             res.append(int(i))
@@ -26,8 +26,8 @@ class Date:
             return f"Day - {day} not correct"
 
 
-print(Date.tranformation("11-1111-1111"))
-mc = Date.tranformation("22-22-2222")
+print(Date.transformation("11-1111-1111"))
+mc = Date.transformation("22-22-2222")
 print(mc)
 print(Date.validate([31, 11, 1111]))
 print(Date.validate(mc))
